@@ -6,7 +6,7 @@
 $this->pageTitle=Yii::app()->name . ' - Logeo';
 
 $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-    'links'=>array('Logeo'),
+	'links'=>array('Logeo'),
 ));
 ?>
 

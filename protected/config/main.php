@@ -66,7 +66,7 @@ return array(
 			'editProfileLayout'=>'//layouts/main',
 			// en la siguiente puedes especificar el valor "ui" o "column2" para que use el layout
 			// de fabrica, es basico pero funcional.  si pones otro valor considera que cruge
-			// requerirá de un portlet para desplegar un menu con las opciones de administrador.
+			// requerira de un portlet para desplegar un menu con las opciones de administrador.
 			'generalUserManagementLayout'=>'ui',
 			
 		),

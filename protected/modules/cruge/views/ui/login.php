@@ -4,42 +4,39 @@
 	<?php echo Yii::app()->user->getFlash('loginflash'); ?>
 </div>
 <?php else: ?>
-<div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'logon-form',
+
+<?php 
+
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+	'id'=>'verticalForm',
 	'enableClientValidation'=>false,
-	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
-	),
-)); ?>
+	'htmlOptions'=>array('class'=>'well'),
+)); 
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
-		<?php echo $form->error($model,'password'); ?>
-	</div>
+	echo $form->textFieldRow($model, 'username', array('class'=>'span3')); 
+	echo $form->passwordFieldRow($model, 'password', array('class'=>'span3')); 
+	
+	echo $form->checkboxRow($model, 'rememberMe'); 
+?>
+<div class="btn-toolbar">
 
-	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe'); ?>
-		<?php echo $form->error($model,'rememberMe'); ?>
-	</div>
+<?php 
+	$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Login', 'type'=>'primary')); 
+	
+	$this->widget('bootstrap.widgets.TbButtonGroup', array(
+		'size' => 'small', 
+		'type'=>'info',
+		'buttons'=>array(
+			array('label'=>'Recuperar Clave', 'url'=>array('ui/pwdrec') ),
+			array('label'=>'Registrarse', 'url'=>array('ui/registration')),
+			
+		),
+	));
+?>
 
-	<div class="row buttons">
-		<?php Yii::app()->user->ui->tbutton("Iniciar Sesion"); ?>
-		<?php echo Yii::app()->user->ui->passwordRecoveryLink; ?>
-		<?php
-			if(Yii::app()->user->um->getDefaultSystem()->getn('registrationonlogin')===1)
-				echo Yii::app()->user->ui->registrationLink;
-		?>
-	</div>
-
-<?php $this->endWidget(); ?>
 </div>
+	
+<?php $this->endWidget(); ?>
+
 <?php endif; ?>

@@ -36,7 +36,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 				array('label'=>'Intranet', 'items'=> array(
 					array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')), 
 					'---',
-					array('label'=>'Logeo', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest), //'url'=>Yii::app()->user->ui->loginUrl
+					array('label'=>'Logeo', 'url'=>Yii::app()->user->ui->loginUrl, 'visible'=>Yii::app()->user->isGuest), //'url'=>Yii::app()->user->ui->loginUrl
 					array('label'=>'Salir ('.Yii::app()->user->name.')', 'url'=>Yii::app()->user->ui->logoutUrl, 'visible'=>!Yii::app()->user->isGuest),
 				)),
 				

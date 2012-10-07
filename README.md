@@ -2,4 +2,7 @@ proyecto-base
 =============
 
 Proyecto realizado con Yii Framework & Bootstrap.
-[c.acosta to icprojects]
+
+url: http://yii.icprojects.pe/index.php
+
+email : c.acosta to icprojects

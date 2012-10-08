@@ -60,10 +60,19 @@ abstract class CrugeMailerBase extends CApplicationComponent {
 		}
 		return $this->_controller;
 	}
+	
 	protected function render($viewname,$data=array()){
-		return $this->getController()->render($viewname,$data,true);
+		return $this->getController()->renderPartial($viewname,$data,true);
 	}
+	
+	/**
+	 * 
+	 * @param string $to
+	 * @param string $subject
+	 * @param string $body
+	 */
 	protected function sendEmail($to,$subject,$body) {
+	
 		$from = $this->mailfrom;
 		$_subject = $this->subjectprefix.$subject;
 		$headers="From: {$from}\r\nReply-To: {$from}";
@@ -71,6 +80,8 @@ abstract class CrugeMailerBase extends CApplicationComponent {
 		$tmp = "to:".$to."\nsubject:".$_subject."\nbody:".$body."\n";
 		Yii::log("email:\n".$tmp."\n","info");
 		return $ret;
+		
+	
 	}
 	
 }

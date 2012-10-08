@@ -46,3 +46,19 @@ body {
 	font-size: 10px;
 	margin-top: 3px;
 }
+
+
+.alert-block {
+	padding-bottom: 6px;
+	padding-top: 6px;
+}
+
+.alert-block > p, .alert-block > ul {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.alert-danger, .alert-error {
+	border-color: #B94A48;
+	font-size: 11px;
+}

@@ -30,9 +30,9 @@ return array(
 			'password'=>'123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('*'),
-			'generatorsPath' => array(
-				'bootstrap.gii'
-			),
+			/*'generatorsPath' => array(
+				'ext.bootstrap.gii.bootstrap'
+			),*/
 		),
 		'cruge'=>array(
 			'tableprefix'=>'seg_',
@@ -132,15 +132,19 @@ return array(
 			'class' => 'application.modules.cruge.components.CrugeWebUser',
 			'loginUrl' => array('/cruge/ui/login'),
 		),
+		
 		'authManager' => array(
 			'class' => 'application.modules.cruge.components.CrugeAuthManager',
 		),
+		
 		'crugemailer'=>array(
 			'class' => 'application.modules.cruge.components.CrugeMailer',
-			'mailfrom' => 'jacosta@icprojects.pe',
+			'mailfrom' => 'c.acosta@icprojects.pe',
 			'subjectprefix' => 'Enviado por - ',
-			'debug' => true,
+			'debug' => false,
+			'throwsAnExceptionIfMailFails'=>false
 		),
+		
 		'format' => array(
 			'datetimeFormat'=>"d M, Y h:m:s a",
 		),
@@ -151,6 +155,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'soporte@icprojects.pe',
 	),
 );

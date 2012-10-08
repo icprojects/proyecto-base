@@ -83,19 +83,56 @@
 		public function sendWaitForActivation(ICrugeStoredUser $userInst,$notEncryptedPassword)
 		{
 			$this->sendEmail($userInst->email,self::t("ha solicitado registrarse, espere por activacion.")
-				,$this->render('sendwaitforactivation'
-				,array('model'=>$userInst,'password'=>$notEncryptedPassword))
+					,$this->render('sendwaitforactivation'
+					,array('model'=>$userInst,'password'=>$notEncryptedPassword))
 			);
 		}
 		
+		/**
+		 * 
+		 * @param array $form
+		 */
+		public function sendMailContact( $form )
+		{
+			//CVarDumper::dump($form);
+			
+			//$this->sendEmail($formContac['email'],$formContac['subject'],$formContac['body']);
+			$this->sendEmail($form->email,
+					$form->subject
+					,$this->render('sendmailcontact',array('model'=>$form))
+			);
+		}
+		
+		
 		/*
-		    este metodo se coloca aqui para que puedas personalizar el envio de correo
-		    usando tu propia metodo, si quieres usar el metodo por defecto (mail) entonces
-		    simplemente llamas a parent::sendEmail.  
+		 este metodo se coloca aqui para que puedas personalizar el envio de correo
+		 usando tu propia metodo, si quieres usar el metodo por defecto (mail) entonces
+		 simplemente llamas a parent::sendEmail.  
 		*/
-	        public function sendEmail($to,$subject,$body) 
-	        {
-	            return parent::sendEmail($to,$subject,$body);
-	        }
+		public function sendEmail($to,$subject,$body) 
+		{
+			$_subject = $this->subjectprefix.$subject;
+			$mailer = Yii::createComponent('application.extensions.mailer.EMailer');
+			$mailer->Host = '';
+			$mailer->IsSMTP();
+			$mailer->SMTPDebug  = 1;                     // Habilita información SMTP (opcional para pruebas)
+			// 1 = errores y mensajes
+			// 2 = solo mensajes
+			$mailer->SMTPAuth   = true;                  // Habilita la autenticación SMTP
+			$mailer->SMTPSecure = "ssl";                 // Establece el tipo de seguridad SMTP
+			$mailer->Host       = "smtp.gmail.com";      // Establece Gmail como el servidor SMTP
+			$mailer->Port       = 465;                   // Establece el puerto del servidor SMTP de Gmail
+			$mailer->Username   = '';  // Usuario Gmail
+			$mailer->Password   = '';   // Clave Usaurio Gmail
+			$mailer->From = $this->mailfrom;
+			$mailer->FromName = 'Mail Web Contact';
+			//$mailer->AddReplyTo('wei@example.com');
+			$mailer->AddAddress($to);
+			
+			$mailer->CharSet = 'UTF-8';
+			$mailer->Subject = $_subject;
+			$mailer->Body = $body;
+			$mailer->Send();
+		}
 	}
 ?>

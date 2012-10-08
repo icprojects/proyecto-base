@@ -17,9 +17,9 @@ class CrugeException extends CHttpException {
 		$this->extra = $extra;
 	}
 	public function __toString() {
-		/*
-        return $this->classParent . ": [{$this->code}]: ".CrugeTranslator::t($this->message)."\n".$extra;
-		*/
+		
+		//return $this->classParent . ": [{$this->code}]: ".CrugeTranslator::t($this->message)."\n".$extra;
+		
 		return CrugeTranslator::t($this->message)."<br/>".$this->code;
     }
 }

@@ -115,6 +115,7 @@
 			$mailer = Yii::createComponent('application.extensions.mailer.EMailer');
 			$mailer->Host = '';
 			$mailer->IsSMTP();
+			
 			$mailer->SMTPDebug  = 1;                     // Habilita información SMTP (opcional para pruebas)
 			// 1 = errores y mensajes
 			// 2 = solo mensajes
@@ -122,10 +123,11 @@
 			$mailer->SMTPSecure = "ssl";                 // Establece el tipo de seguridad SMTP
 			$mailer->Host       = "smtp.gmail.com";      // Establece Gmail como el servidor SMTP
 			$mailer->Port       = 465;                   // Establece el puerto del servidor SMTP de Gmail
-			$mailer->Username   = '';  // Usuario Gmail
-			$mailer->Password   = '';   // Clave Usaurio Gmail
+			$mailer->Username   = 'user@gmail.com';  // Usuario Gmail
+			$mailer->Password   = 'clave';   // Clave Usaurio Gmail
 			$mailer->From = $this->mailfrom;
 			$mailer->FromName = 'Mail Web Contact';
+			$mailer->IsHTML(true);
 			//$mailer->AddReplyTo('wei@example.com');
 			$mailer->AddAddress($to);
 			

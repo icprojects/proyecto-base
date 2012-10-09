@@ -32,7 +32,9 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 				array('label'=>'Inicio', 'url'=>array('/site/index')),
 				array('label'=>'Contactenos', 'url'=>array('/site/contact')),
 				array('label'=>'Administrar Usuarios' , 'url'=>Yii::app()->user->ui->userManagementAdminUrl, 'visible'=>!Yii::app()->user->isGuest),
-				
+				array('label'=>'Agil', 'items'=> array(
+					array('label'=>'Proyecto', 'url'=>array('/proyecto/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				)),
 				array('label'=>'Intranet', 'items'=> array(
 					array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')), 
 					'---',
